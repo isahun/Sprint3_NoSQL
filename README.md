@@ -29,7 +29,7 @@ The objective is to create a cloud database instance, configure secure access, a
 ---
 
 ## 🗂 Project Structure
-├── dbaas-atlas.html
+├── index.html
 ├── articles.json
 ├── screens/
 └── README.md
@@ -68,6 +68,22 @@ The connection was established using MongoDB Compass with the connection string 
 - `articles` collection imported with multiple documents
 - Queries executed successfully
 - Embedded model validated in a DBaaS environment
+
+---
+
+## 🚀 How to Run the Project Locally
+
+1. Clone the repository:
+
+git clone https://github.com/isahun/Sprint3_NoSQL.git
+
+2. Navigate into the project folder:
+
+cd Sprint3_NoSQL
+
+3. Open index.html in your browser.
+
+No build tools or dependencies are required.
 
 ---
 
