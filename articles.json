@@ -1,0 +1,54 @@
+[
+    {
+        "titol": "Primer article",
+        "contingut": "Contingut del primer article.",
+        "data_publicacio": { "$date": "2026-02-24T10:00:00Z" },
+        "autor": {
+            "id": 123,
+            "email": "user1@exemple.cat"
+        },
+        "comentaris": [
+            {
+                "contingut": "Molt interessant!",
+                "data": {
+                    "$date": "2026-02-24T11:00:00Z" 
+                },
+                "autor": {
+                    "id": 456,
+                    "email": "comentador1@exemple.cat"
+                }
+            }
+        ]
+    },
+    {
+        "titol": "Segon article",
+        "contingut": "Contingut del segon article.",
+        "data_publicacio": { "$date": "2026-02-24T9:00:00Z" },
+        "autor": {
+            "id": 124,
+            "email": "usuari2@exemple.cat"
+        },
+        "comentaris": []
+    }, 
+    {
+        "titol": "Tercer article",
+        "contingut": "Contingut del tercer article.",
+        "data_publicacio": { "$date": "2026-02-24T9:00:00Z" },
+        "autor": {
+            "id": 123,
+            "email": "user1@exemple.cat"
+        },
+        "comentaris": [
+            {
+                "contingut": "Molt bon article!",
+                "data": {
+                    "$date": "2026-02-24T12:00:00Z" 
+                },
+                "autor": {
+                    "id": 124,
+                    "email": "usuari2@exemple.cat"
+                }
+            }
+        ]
+    }
+]
