@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Node (per quan facis backend)
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Environment variables
+.env
+
+# VSCode
+.vscode/
+
+# OS
+Thumbs.db
