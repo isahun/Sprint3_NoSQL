@@ -233,20 +233,81 @@
         </div>
       </section>
       <!-- END: Verification -->
+      <!-- BEGIN: ModelAnalysis -->
+      <section data-purpose="content-section" id="model">
+        <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <h2 class="text-2xl font-bold text-white">
+              7. Anàlisi del Model NoSQL
+            </h2>
+          </div>
 
+          <p class="text-slate-400 mb-4 leading-relaxed">
+            S'ha creat la col·lecció articles a MongoDB, on cada document representa un article amb la següent estructura:
+          </p>
+            <ul class="space-y-3 text-slate-400">
+              <li>
+                • titol
+              </li>
+              <li>
+                • contingut
+              </li>
+              <li>
+                • data_publicacio
+              </li>
+              <li>
+                • autor (objecte embegut amb id i email)
+              </li>
+              <li>
+                • comentaris (array d'objectes amb contingut, data i autor)
+              </li>
+
+          <!-- PROS -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-primary mb-4">Avantatges</h3>
+            <ul class="space-y-3 text-slate-400">
+              <li>
+                • Tota la informació d'un article es troba en un únic document.
+              </li>
+              <li>
+                • Recuperació ràpida de dades amb una sola consulta.
+              </li>
+              <li>
+                • No cal gestionar múltiples col·leccions relacionades.
+              </li>
+              <li>
+                • El format coincideix amb l'estructura JSON utilitzada al frontend.
+              </li>
+            </ul>
+          </div>
+
+          <!-- CONTRES -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-pink-400 mb-4">Inconvenients</h3>
+            <ul class="space-y-3 text-slate-400">
+              <li>
+                • Redundància de dades (l'autor es repeteix en diversos documents).
+              </li>
+              <li>
+                • Si un usuari canvia dades, cal actualitzar múltiples documents.
+              </li>
+              <li>
+                • L'acumulació de comentaris pot fer créixer excessivament la mida del document.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <!-- END: ModelAnalysis -->
       <!-- BEGIN: Conclusions -->
       <section data-purpose="content-section" id="conclusions">
         <div class="bg-primary/5 backdrop-blur-sm border-2 border-primary/20 rounded-3xl p-8 relative overflow-hidden group">
-          <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
-            <svg class="w-32 h-32 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
-            </svg>
-          </div>
           <div class="flex items-center gap-3 mb-4">
             <h2 class="text-2xl font-bold text-white">Conclusions</h2>
           </div>
           <p class="text-slate-400 leading-relaxed relative z-10">
-            La base de dades s'ha desplegat correctament en un entorn DBaaS fent servir MongoDB Atlas. S'ha comprovat la connexió remota, la correcta importació de les dades i les relacions establertes entre elles.</p>
+            La base de dades s'ha desplegat correctament en un entorn DBaaS fent servir MongoDB Atlas. S'ha comprovat la connexió remota, la correcta importació de les dades i les relacions establertes entre elles.
+            Pel que fa el model emprat, en el context d'un blog acadèmic amb moltes lectures i una estructura estable, el model embegut és una solució eficient i coherent. </p>
         </div>
       </section>
       <!-- END: Conclusions -->
