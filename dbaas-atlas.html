@@ -1,0 +1,267 @@
+<!doctype html>
+<html class="dark" lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DBaaS - Desplegament al Núvol amb MongoDB Atlas</title>
+
+    <!-- Google Fonts: Space Grotesk -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#42f0b6",
+              kawaii: {
+                mint: "#e6fffa",
+                pink: "#fff5f7",
+                lavender: "#faf5ff",
+                darkMint: "#1a2e26",
+              },
+            },
+            fontFamily: {
+              sans: ["Space Grotesk", "sans-serif"],
+            },
+            borderRadius: {
+              full: "9999px",
+              "3xl": "1.5rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style data-purpose="custom-animations">
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      .float-element {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .kawaii-pattern {
+        background-image: radial-gradient(#42f0b6 0.5px, transparent 0.5px);
+        background-size: 24px 24px;
+        opacity: 0.1;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-200 font-sans selection:bg-primary selection:text-slate-900 min-h-screen">
+    <!-- BEGIN: Decorative Background Elements -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+      <div class="kawaii-pattern absolute inset-0"></div>
+      <div class="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 right-10 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
+    </div>
+    <!-- END: Decorative Background Elements -->
+
+    <!-- BEGIN: Main Header -->
+    <header class="relative pt-12 pb-8 px-6 text-center z-10" data-purpose="hero-section">
+      <div class="inline-block mb-4 float-element">
+        <div class="bg-primary/20 p-4 rounded-full border-2 border-primary/30">
+          <svg
+            class="w-12 h-12 text-primary"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+        </div>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-2">
+        DBaaS - Desplegament al Núvol
+      </h1>
+      <p class="text-primary font-medium text-lg md:text-xl">
+        amb MongoDB Atlas ✨
+      </p>
+    </header>
+    <!-- END: MainHeader -->
+    <main class="max-w-4xl mx-auto px-6 pb-24 relative z-10 space-y-12">
+      <!-- BEGIN: Introduccio -->
+      <section data-purpose="content-section" id="introduccio">
+        <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-8 hover:border-primary/30 transition-colors duration-300">
+          <div class="flex items-center gap-3 mb-4">
+            <h2 class="text-2xl font-bold text-white">Introducció</h2>
+          </div>
+          <p class="text-slate-400 leading-relaxed">
+            En aquesta activitat de l'Sprint 3 he desplegat una base de dades al núvol fent servir <strong>MongoDB Atlas</strong>. He reutilitzat el model de l'activitat anterior per crear una col·lecció d'articles representada com un array d'objectes en format JSON i d'aquesta manera importar dades de prova a la base de dades. 
+          </p>
+           <div class="flex flex-col items-left gap-3 mt-4 mb-4">
+            <h3 class="text-xl font-bold text-white">Objectius</h3>
+            <div class="flex flex-col text-slate-400 leading-relaxed">
+                <p> Crear un clúster </p>
+                <p> Configurar un user i l'accés a través d'IP </p>
+                <p> Connectar amb la base de dades al núvol d'Atlas amb MongoDB Compass </p>
+                <p> Importar un fitxer JSON amb dades d'exemple </p>
+                <p> Verificar que les dades s'han importat i es consulten correctament </p>
+
+            </div>
+        </div>
+       
+      </section>
+      <!-- END: Introduccio -->
+
+      <!-- BEGIN: ClusterCreation -->
+      <section data-purpose="content-section" id="cluster">
+        <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <h2 class="text-2xl font-bold text-white">
+              1. Creació del Clúster
+            </h2>
+          </div>
+          <p class="text-slate-400 mb-6">
+            El primer pas és crear un clúster gratuït (nivell M0)
+            seleccionant el proveïdor de núvol de la regió més propera. En aquest cas, el proveïdor és AWS/Paris.
+          </p>
+          <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-xl group">
+            <a href="screens/atlas_cluster0.png"><img alt="Configuració del Clúster Atlas" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-500" src="screens/atlas_cluster0.png"></a>
+          </div>
+        </div>
+      </section>
+      <!-- END: ClusterCreation -->
+
+      <!-- BEGIN: UserCreation -->
+      <section data-purpose="content-section" id="user">
+        <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <h2 class="text-2xl font-bold text-white">2. Creació d'Usuari</h2>
+          </div>
+          <p class="text-slate-400 mb-6">
+            S'ha creat un usuari de base de dades amb credencials específiques per accedir a les col·leccions de manera segura.
+          </p>
+          <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-xl">
+            <a href="screens/atlas_db_user.png"><img alt="Creació d'usuari a Atlas" class="w-full h-auto" src="screens/atlas_db_user.png"></a>
+          </div>
+        </div>
+      </section>
+      <!-- END: UserCreation -->
+
+      <!-- BEGIN: IPAccess -->
+      <section data-purpose="content-section" id="network">
+        <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <h2 class="text-2xl font-bold text-white">
+              3. Configuració d'Accés per IP
+            </h2>
+          </div>
+          <p class="text-slate-400 mb-6">
+            En aquest punt s'ha decidit configurar l'accés de xarxa de manera que es permetin connexions des de qualsevol IP, a través de la IP 0.0.0.0/0. Aquesta és una decisió excepcional fruit de l'entorn acadèmic en què es desenvolupa la tasca.
+          </p>
+          <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-xl">
+            <a href="screens/atlas_ID_list.png"><img alt="Llista d'accés IP" class="w-full h-auto" src="screens/atlas_ID_list.png"></a>
+          </div>
+        </div>
+      </section>
+      <!-- END: IPAccess -->
+
+      <!-- BEGIN: CompassConnection -->
+      <section data-purpose="content-section" id="compass">
+        <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <h2 class="text-2xl font-bold text-white">
+              4. Connexió amb MongoDB Compass
+            </h2>
+          </div>
+          <p class="text-slate-400 mb-6">
+            MongoDB Compass és una interfície gràfica que permet administrar bases de dades MongoDB. La connexió amb el clúster desplegat al núvol s'ha realitzat mitjançant la connection string generada per MongoDB Atlas.</p>
+          <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-xl">
+            <a href="screens/Connection.jpg"><img alt="Connexió amb Compass" class="w-full h-auto" src="screens/Connection.jpg"></a>
+          </div>
+          <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-xl">
+            <a href="screens/cluster_buit_compass.png"><img alt="Connexió amb Compass" class="w-full h-auto" src="screens/cluster_buit_compass.png"></a>
+          </div>
+        </div>
+      </section>
+      <!-- END: CompassConnection -->
+
+      <!-- BEGIN: DataImport -->
+      <section data-purpose="content-section" id="import">
+        <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <h2 class="text-2xl font-bold text-white">
+              5. Importació de Dades
+            </h2>
+          </div>
+          <p class="text-slate-400 mb-6">
+            S'ha importat un arxiu JSON per poblar la base de dades amb la informació de l'activitat. El JSON conté un array d'objectes, en concret 3 articles, amb la mateixa informació que l'exercici anterior: títol, contingut, data de publicació, autor i comentaris.
+          </p>
+
+          <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-xl">
+            <a href="screens/json.png"><img alt="Importació de dades" class="w-full h-auto" src="screens/json.png"></a>
+          </div>
+        </div>
+      </section>
+      <!-- END: DataImport -->  
+
+      <!-- BEGIN: Verification -->
+      <section data-purpose="content-section" id="verificacio">
+        <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <h2 class="text-2xl font-bold text-white">6. Verificació</h2>
+          </div>
+          <p class="text-slate-400 mb-6">
+            Un cop s'ha comprovat que els 3 articles provinents del JSON s'han importat, s'ha executat una consulta ràpida per assegurar que Compass està accedint a la informació correctament. S'ha filtrat per autor amb el query <code>{ "autor.id": 123 }</code> :
+          </p>
+          <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-xl">
+            <a href="screens/compass_cluster_blog_articles.png"><img alt="Verificació final" class="w-full h-auto" src="screens/compass_cluster_blog_articles.png"></a>
+          </div>
+          <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-xl">
+            <a href="screens/compass_query.png"><img alt="Verificació final" class="w-full h-auto" src="screens/compass_query.png"></a>
+          </div>
+        </div>
+      </section>
+      <!-- END: Verification -->
+
+      <!-- BEGIN: Conclusions -->
+      <section data-purpose="content-section" id="conclusions">
+        <div class="bg-primary/5 backdrop-blur-sm border-2 border-primary/20 rounded-3xl p-8 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+            <svg class="w-32 h-32 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+            </svg>
+          </div>
+          <div class="flex items-center gap-3 mb-4">
+            <h2 class="text-2xl font-bold text-white">Conclusions</h2>
+          </div>
+          <p class="text-slate-400 leading-relaxed relative z-10">
+            La base de dades s'ha desplegat correctament en un entorn DBaaS fent servir MongoDB Atlas. S'ha comprovat la connexió remota, la correcta importació de les dades i les relacions establertes entre elles.</p>
+        </div>
+      </section>
+      <!-- END: Conclusions -->
+    </main>
+    <!-- BEGIN: Footer -->
+    <footer class="py-12 text-center border-t border-slate-900 bg-slate-950/80 backdrop-blur-md">
+      <p class="text-slate-500 text-sm">
+        Fet amb <span class="text-pink-400">♥</span>
+      </p>
+      <div class="mt-4 flex justify-center gap-4">
+        <div class="w-2 h-2 rounded-full bg-primary/40"></div>
+        <div class="w-2 h-2 rounded-full bg-purple-500/40"></div>
+        <div class="w-2 h-2 rounded-full bg-pink-500/40"></div>
+      </div>
+    </footer>
+    <!-- END: Footer -->
+  </body>
+</html>
